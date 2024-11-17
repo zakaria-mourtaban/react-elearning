@@ -8,8 +8,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = json_decode(file_get_contents('php://input'), true);
 
     if (isset($data['student_id']) && isset($data['course_id'])) {
-		$payload = json_decode($jwt->decode($data['jwt']),associative:true);
-		if ($payload == null)
+		$payload = $jwt->decode($data['jwt']);
+		if ($payload == [])
 		{
 			echo json_encode([
 				'success' => false,

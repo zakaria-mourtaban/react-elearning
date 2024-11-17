@@ -52,21 +52,21 @@ class JWT
 		//     return false; // fails if expiration is greater than 0, setup for 1 minute
 		// }
 
-		if (isset(json_decode($payload)->iss)) {
-			if (json_decode($headers)->iss != json_decode($payload)->iss) {
-				return false; // fails if issuers are not the same
-			}
-		} else {
-			return false; // fails if issuer is not set 
-		}
+		// if (isset(json_decode($payload)->iss)) {
+		// 	if (json_decode($headers)->iss != json_decode($payload)->iss) {
+		// 		return false; // fails if issuers are not the same
+		// 	}
+		// } else {
+		// 	return false; // fails if issuer is not set 
+		// }
 
-		if (isset(json_decode($payload)->aud)) {
-			if (json_decode($headers)->aud != json_decode($payload)->aud) {
-				return false; // fails if audiences are not the same
-			}
-		} else {
-			return false; // fails if audience is not set
-		}
+		// if (isset(json_decode($payload)->aud)) {
+		// 	if (json_decode($headers)->aud != json_decode($payload)->aud) {
+		// 		return false; // fails if audiences are not the same
+		// 	}
+		// } else {
+		// 	return false; // fails if audience is not set
+		// }
 
 		$base64_header = $this->encode($headers);
 		$base64_payload = $this->encode($payload);
@@ -77,10 +77,10 @@ class JWT
 		return ($base64_signature === $clientSignature);
 	}
 
-	public function decode($jwt): string
+	public function decode($jwt): array
 	{
 		if (!$this->is_valid($jwt))
-			return null;
+			return [];
 		$token = explode(".", $jwt);
 		if (count($token) !== 3) {
 			throw new Exception("Invalid token format");
@@ -93,7 +93,7 @@ class JWT
 		$expected_signature = $this->encode(hash_hmac('SHA256', "$base64_header.$base64_payload", $this->secret, true));
 
 		if ($signature !== $expected_signature) {
-			return null;
+			return [];
 		}
 		return $payload;
 	}
