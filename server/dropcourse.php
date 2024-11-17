@@ -1,15 +1,25 @@
 <?php
 
-include "connection.php"; // Include the database connection file
+include "connection.php"; 
+include "jwt.php";
 
+$jwt = new JWT();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = json_decode(file_get_contents('php://input'), true);
 
     if (isset($data['student_id']) && isset($data['course_id'])) {
-        $student_id = intval($data['student_id']);
+		$payload = json_decode($jwt->decode($data['jwt']),associative:true);
+		if ($payload == null)
+		{
+			echo json_encode([
+				'success' => false,
+				'message' => 'not authorized'
+			]);
+			exit;
+		}
+		$student_id = intval($payload['id']);
         $course_id = intval($data['course_id']);
 
-        // Check if the student is enrolled in the course
         $enrollmentCheckQuery = $connection->prepare("SELECT * FROM course WHERE course_id = ? AND student_id = ?");
         $enrollmentCheckQuery->bind_param("ii", $course_id, $student_id);
         $enrollmentCheckQuery->execute();
@@ -23,7 +33,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         }
 
-        // Drop the student from the course
         $dropQuery = $connection->prepare("DELETE FROM course WHERE course_id = ? AND student_id = ?");
         $dropQuery->bind_param("ii", $course_id, $student_id);
 
@@ -50,5 +59,3 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'message' => 'Invalid request method'
     ]);
 }
-
-?>
