@@ -7,7 +7,7 @@ $jwt = new JWT();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = json_decode(file_get_contents('php://input'), true);
 
-    if (isset($data['student_id']) && isset($data['course_id'])) {
+    if (isset($data['course_id'])) {
 		$payload = $jwt->decode($data['jwt']);
 		if ($payload == [])
 		{
@@ -17,11 +17,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			]);
 			exit;
 		}
-		$student_id = intval($payload['id']);
+		$user_id = intval($payload['id']);
         $course_id = intval($data['course_id']);
 
-        $enrollmentCheckQuery = $connection->prepare("SELECT * FROM course WHERE course_id = ? AND student_id = ?");
-        $enrollmentCheckQuery->bind_param("ii", $course_id, $student_id);
+        $enrollmentCheckQuery = $connection->prepare("SELECT * FROM course WHERE course_id = ? AND user_id = ?");
+        $enrollmentCheckQuery->bind_param("ii", $course_id, $user_id);
         $enrollmentCheckQuery->execute();
         $enrollmentResult = $enrollmentCheckQuery->get_result();
 
@@ -33,8 +33,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             exit;
         }
 
-        $dropQuery = $connection->prepare("DELETE FROM course WHERE course_id = ? AND student_id = ?");
-        $dropQuery->bind_param("ii", $course_id, $student_id);
+        $dropQuery = $connection->prepare("DELETE FROM course WHERE course_id = ? AND user_id = ?");
+        $dropQuery->bind_param("ii", $course_id, $user_id);
 
         if ($dropQuery->execute()) {
             echo json_encode([

@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			]);
 			exit;
 		}
-        $query = $connection->prepare("SELECT * FROM course WHERE ? = student_id");
+        $query = $connection->prepare("SELECT * FROM course WHERE user_id = ?");
         $query->bind_param("s", $payload["id"]);
         $query->execute();
         $result = $query->get_result();
