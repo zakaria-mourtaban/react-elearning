@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 			if (password_verify($password, $user['password'])) {
 				$payload = [
-					'id' => $user['id'],
+					'id' => $user['user_id'],
 					'type_id' => $user['type_id'],
 					'name' => $user['name'],
 					'email' => $user['email']
