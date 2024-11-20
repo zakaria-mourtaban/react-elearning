@@ -1,19 +1,40 @@
 import React, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
+import axios from 'axios';
 import "../styles/login.css"
+
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-
+	const navigate = useNavigate();
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (!email || !password) {
-            setError('Both fields are required');
-            return;
-        }
-		setError("");
-		console.log(email);
-		console.log(password);
+		try {
+			axios
+				.post(
+					"http://localhost/react-elearning/server/login.php",
+					{ email, password },
+					{
+						headers: {
+							"Content-Type": "application/json",
+						},
+					}
+				)
+				.then((res) => {
+					console.log(res);
+					if (res.data.success === "true") {
+						localStorage.setItem("jwt", res.data.token);
+					} else {
+						setError(res.data.message);
+					}
+				});
+			setEmail("");
+			setPassword("");
+			navigate("/courses")
+		} catch (error) {
+			setError("registration failed");
+		}
     };
 
 	return (
