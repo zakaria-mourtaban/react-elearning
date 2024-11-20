@@ -1,20 +1,40 @@
 import React, { useState } from "react";
+import axios from "axios";
 import "../styles/register.css";
-const Login = () => {
+const Register = () => {
 	const [email, setEmail] = useState("");
 	const [name, setName] = useState("");
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState("");
 
 	const handleSubmit = (e) => {
-		e.preventDefault();
-		if (!email || !password) {
-			setError("Both fields are required");
-			return;
-		}
 		setError("");
-		console.log(email);
-		console.log(password);
+		e.preventDefault();
+		try {
+			axios
+				.post(
+					"http://localhost/react-elearning/server/register.php",
+					{ name, email, password },
+					{
+						headers: {
+							"Content-Type": "application/json",
+						},
+					}
+				)
+				.then((res) => {
+					console.log(res);
+					if (res.data.success === "true") {
+						localStorage.setItem("jwt", res.data.token);
+					} else {
+						setError(res.data.message);
+					}
+				});
+			setEmail("");
+			setName("");
+			setPassword("");
+		} catch (error) {
+			setError("registration failed");
+		}
 	};
 
 	return (
@@ -51,4 +71,4 @@ const Login = () => {
 	);
 };
 
-export default Login;
+export default Register;
