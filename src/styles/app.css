@@ -1,0 +1,14 @@
+*
+{
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+}
+
+.App
+{
+	font-family: "Open Sans";
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
