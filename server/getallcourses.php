@@ -15,7 +15,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		]);
 		exit;
 	}
-	$query = $connection->prepare("SELECT course_id, name, streamlink FROM course GROUP BY course_id;");
+	$query = $connection->prepare("SELECT course_id, name, streamlink FROM course where user_id != ? GROUP BY course_id ");
+	$query->bind_param("i", $payload["id"]);
 	$query->execute();
 	$result = $query->get_result();
 	$return = [];
