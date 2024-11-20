@@ -1,6 +1,107 @@
-*
-{
+* {
 	margin: 0px;
 	padding: 0px;
 	box-sizing: border-box;
+}
+
+.courses-container {
+	display: flex;
+	justify-content: flex-start;
+	align-items: flex-start;
+	height: 100vh;
+	width: 100vw;
+}
+
+.courses-container > h1 {
+	width: 100vw;
+	padding: 2%;
+}
+
+.content
+{
+	display: flex;
+}
+
+.courses {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	height: 90%;
+	width: 60%;
+	gap: 15px;
+	padding: 15px;
+}
+
+.course {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #88fe7c;
+	width: 100%;
+	height: 100px;
+	border-radius: 10px;
+	padding-left: 30px;
+}
+
+.course button {
+	width: 70px;
+	height: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 15px;
+	border: none;
+	color: white;
+	font-size: 18px;
+}
+
+.icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 50px;
+	height: 50px;
+	background-color: aliceblue;
+	border-radius: 50%;
+	font-size: 32px;
+}
+
+.DropBtn {
+	background-color: red;
+}
+
+.EnrollBtn {
+	background-color: #2faf27;
+}
+
+.ButtonsDiv {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 15px;
+}
+
+.CourseInfo {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 25px;
+}
+
+.GoToCourseBtn {
+	background-color: #1a2024;
+	min-width: 120px;
+}
+
+.invites
+{
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	width: 40%;
+	gap: 15px;
+	padding: 15px;
 }
