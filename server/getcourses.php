@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $result = $query->get_result();
 		$return = [];
 		while ($row = $result->fetch_assoc()) {
-			return[] = $row;
+			$return[] = $row;
 		}
 		echo json_encode([
 			'success' => true,
