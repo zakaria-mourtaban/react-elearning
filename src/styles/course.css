@@ -15,7 +15,7 @@
 	margin: 15px;
 }
 
-h1{
+h1 {
 	margin-bottom: 50px;
 }
 
@@ -28,21 +28,18 @@ h1{
 	height: 100%;
 }
 
-.Assignment
-{
+.Assignment {
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
 	gap: 15px;
-	background-color: #88FE7C;
-	height: 75px;
+	background-color: #88fe7c;
 	padding: 30px;
 	border-radius: 15px;
-	width:900px;
+	width: 70%;
 }
 
-.AttachmentBtn
-{
+button {
 	width: 30px;
 	height: 30px;
 	border-radius: 50%;
@@ -51,15 +48,24 @@ h1{
 	font-size: 25px;
 }
 
-h5
-{
+.addcommenth5 {
 	margin-left: auto;
 }
 
-.StreamLink
-{
-	background-color: #88FE7C;
+.StreamLink {
+	background-color: #88fe7c;
 	width: 300px;
 	height: auto;
 	border-radius: 15px;
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+	padding: 30px;
+}
+
+.Assignment h3 {
+    max-width: 500px; /* or any specific width you want */
+    word-wrap: break-word; /* Ensures that text will wrap to the next line if it exceeds the width */
+    overflow-wrap: break-word; /* Ensures long words break and wrap */
+    height: auto; /* Let it expand based on content */
 }

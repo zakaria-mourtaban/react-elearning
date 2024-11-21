@@ -35,6 +35,8 @@ const Course = () => {
 					return (
 						<div className="Assignment">
 							<h3>{assignment.assignment}</h3>
+							<h5 className="addcommenth5">add comment:</h5>
+							<button className="CommentBtn">+</button>
 							<h5>add attachment:</h5>
 							<button className="AttachmentBtn">+</button>
 						</div>
