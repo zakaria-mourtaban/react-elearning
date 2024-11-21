@@ -6,7 +6,7 @@ include "jwt.php";
 $jwt = new JWT();
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$data = json_decode(file_get_contents('php://input'), true);
-
+	echo json_encode($data);
 	if (isset($data['assignment_id']) && isset($data['comment']) && isset($data['private'])) {
 		$payload = $jwt->decode($data['jwt']);
 		if ($payload == [])
