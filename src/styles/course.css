@@ -1,0 +1,65 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+}
+
+.content {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	height: 100vh;
+	width: 100vw;
+	margin: 15px;
+}
+
+h1{
+	margin-bottom: 50px;
+}
+
+.Assignments {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 30px;
+	width: 90%;
+	height: 100%;
+}
+
+.Assignment
+{
+	display: flex;
+	justify-content: flex-start;
+	align-items: center;
+	gap: 15px;
+	background-color: #88FE7C;
+	height: 75px;
+	padding: 30px;
+	border-radius: 15px;
+	width:900px;
+}
+
+.AttachmentBtn
+{
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	border: solid;
+	border-width: 1px;
+	font-size: 25px;
+}
+
+h5
+{
+	margin-left: auto;
+}
+
+.StreamLink
+{
+	background-color: #88FE7C;
+	width: 300px;
+	height: auto;
+	border-radius: 15px;
+}
