@@ -23,15 +23,16 @@ const Login = () => {
 				)
 				.then((res) => {
 					console.log(res);
-					if (res.data.success === "true") {
+					if (res.data.success === true) {
+						localStorage.clear();
 						localStorage.setItem("jwt", res.data.token);
+						setEmail("");
+						setPassword("");
+						navigate("/courses")
 					} else {
 						setError(res.data.message);
 					}
 				});
-			setEmail("");
-			setPassword("");
-			navigate("/courses")
 		} catch (error) {
 			setError("registration failed");
 		}
