@@ -86,7 +86,7 @@ const Course = () => {
 
 		axios
 			.post(
-				"http://localhost/react-elearning/server/postattachment.php",
+				"http://localhost/react-elearning/server/addattachment.php",
 				formData,
 				{
 					headers: {
